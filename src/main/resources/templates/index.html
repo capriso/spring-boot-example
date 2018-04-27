@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html" />
+    <title>Spring Boot Journal</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap-glyphicons.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Spring Boot Journal</h1>
+        <ul class="timeline">
+            <div th:each="entry,status : ${journal}">
+                <li th:attr="class=${status.odd}?'timeline-inverted':''">
+                    <div class="tl-circ"></div>
+                    <div class="timeline-panel">
+                        <div class="tl-heading">
+                            <h4><span th:text="${entry.title}">Title</span></h4>
+                            <p>
+                                <small class="text-muted"><i class="glyphicon glyphicon-time"></i></small>
+                                <span th:text="${entry.createdAsShort}"></span>
+                            </p>
+                        </div>
+                        <div class="tl-body">
+                            <p><span th:text="${entry.summary}">Summary</span></p>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,3 +1,14 @@
+# Output directory
+build/
+output/
+
+# Gradle directory
+gradle/
+.gradle
+
+# IntelliJ project configuration directory
+.idea/
+
 # Compiled class file
 *.class
 
