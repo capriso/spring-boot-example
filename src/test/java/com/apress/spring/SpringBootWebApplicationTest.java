@@ -1,6 +1,6 @@
 package com.apress.spring;
 
-import com.apress.spring.domain.JournalEntry;
+import com.apress.spring.domain.Journal;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -77,7 +77,7 @@ public class SpringBootWebApplicationTest {
     public void testAdd() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/journal")
                         .content(this.toJsonString(
-                                new JournalEntry("Spring Boot Test", "Create Spring Boot Test", "01/01/2018")))
+                                new Journal("Spring Boot Test", "Create Spring Boot Test", "01/01/2018")))
                 .contentType(contentType))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }

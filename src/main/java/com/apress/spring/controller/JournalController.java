@@ -1,6 +1,8 @@
 package com.apress.spring.controller;
 
-import com.apress.spring.domain.JournalEntry;
+import com.apress.spring.domain.Journal;
+import com.apress.spring.service.JournalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -10,35 +12,21 @@ import java.util.stream.Collectors;
 
 @RestController
 public class JournalController {
-    private static List<JournalEntry> entries = new ArrayList<>();
-    static {
-        try {
-            entries.add(new JournalEntry("Introduction to Spring Boot", "Learned Spring Boot", "01/01/2015"));
-            entries.add(new JournalEntry("Simple Spring Boot Project", "Created Spring Boot Project", "01/01/2016"));
-            entries.add(new JournalEntry("Spring Boot Cloud", "Applied Spring Boot on Cloud", "01/01/2017"));
-        } catch (ParseException e) {
-           e.printStackTrace();
-        }
-    }
+    @Autowired
+    private JournalService journalService;
 
     @RequestMapping("/journal/all")
-    public List<JournalEntry> getAll() {
-        return entries;
+    public List<Journal> getAll() {
+        return journalService.findAll();
     }
 
     @RequestMapping("/journal/findBy/title/{title}")
-    public List<JournalEntry> findByTitleContains(@PathVariable String title) {
-        return entries
-                .stream()
-                .filter(entry -> entry.getTitle().toLowerCase().contains(
-                        title.toLowerCase()))
-                .collect(Collectors.toList());
+    public List<Journal> findByTitleContaining(@PathVariable String title) {
+        return journalService.findByTitleContaining(title);
     }
 
     @RequestMapping(value = "/journal", method = RequestMethod.POST)
-    public JournalEntry add(@RequestBody JournalEntry entry) {
-        System.out.println(entry.toString());
-        entries.add(entry);
-        return entry;
+    public Journal add(@RequestBody Journal journal) {
+        return journalService.save(journal);
     }
 }
