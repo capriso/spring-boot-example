@@ -37,9 +37,7 @@ public class JournalController {
 
     @RequestMapping(value = "/journal", method = RequestMethod.POST)
     public JournalEntry add(@RequestBody JournalEntry entry) {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(entry.toString());
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         entries.add(entry);
         return entry;
     }

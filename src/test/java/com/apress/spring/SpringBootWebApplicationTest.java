@@ -25,7 +25,7 @@ import java.nio.charset.Charset;
 import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SpringBootWebApplicationTest {
     private final String SPRING_BOOT_MATCH = "Spring Boot";
