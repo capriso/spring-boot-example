@@ -1,5 +1,7 @@
 package com.apress.spring.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,9 +27,13 @@ public class Journal {
 
     Journal() {}
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -49,8 +55,11 @@ public class Journal {
         return summary;
     }
 
-    public void setSummary(String summary) { this.summary = summary; }
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
+    @JsonIgnore
     public String getCreatedAsShort() {
         return format.format(created);
     }
